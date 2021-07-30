@@ -1,6 +1,6 @@
->####REST API для сайта фильмов
 >учебный проект по созданию REST API
->инструменты
+
+инструменты
 * Django
 * Django REST framework
 * PostgreSQL
