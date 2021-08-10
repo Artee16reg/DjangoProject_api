@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from movies.models import Movie, Review, Rating
+from movies.models import Movie, Review, Rating, Actor
 
 
 class FilterReviewListSerializer(serializers.ListSerializer):
@@ -21,10 +21,12 @@ class RecursiveSerializer(serializers.Serializer):
 
 class MovieListSerializer(serializers.ModelSerializer):
     """Список фильмов"""
+    rating_user = serializers.BooleanField()
+    middle_star = serializers.IntegerField()
 
     class Meta:
         model = Movie
-        fields = ("title", "tagline", "category")
+        fields = ("id", "title", "tagline", "category", "rating_user", "middle_star")
 
 
 class ReviewCreateSerializer(serializers.ModelSerializer):
