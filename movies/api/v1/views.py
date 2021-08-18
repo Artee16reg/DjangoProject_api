@@ -12,8 +12,7 @@ class MovieListView(APIView):
 
     def get(self, request):
         movies = Movie.objects.filter(draft=False).annotate(
-            rating_user=models.Count("ratings", filter=models.Q(ratings__ip=get_client_ip(request)))
-        ).annotate(
+            rating_user=models.Count("ratings", filter=models.Q(ratings__ip=get_client_ip(request)))).annotate(
             middle_star=models.Sum(models.F('ratings__star')) / models.Count(models.F('ratings'))
         )
         serializer = MovieListSerializer(movies, many=True)
